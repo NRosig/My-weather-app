@@ -1,0 +1,18 @@
+
+
+.app {
+    background-image: url("./imagenes/paisaje.jpg");
+    background-size: cover;
+    background-position: top;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-content: center;
+    align-items: center;
+    border: 50px;
+   
+}
+    
