@@ -1,17 +1,18 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import styles from "../src/App.module.css";
-import  img from "../src/imagenes/weather.jpg"
-import {motion} from "framer-motion";
+import img from "../src/imagenes/weather.jpg";
+import { motion } from "framer-motion";
 import Cards from "./components/Cards";
 
 function App() {
   const [city, setCity] = useState([]);
+
   const imagen = img;
 
   const handleAddCity = (ciudad) => {
     setCity((prevCity) => {
-      return [ciudad, ...prevCity]
+      return [ciudad, ...prevCity];
     });
   };
 
@@ -19,9 +20,9 @@ function App() {
     setCity((prevCity) => {
       return prevCity.filter((city) => {
         return cityId !== city.id;
-      })
-    })
-  }
+      });
+    });
+  };
 
   async function loadInfo(city) {
     fetch(
@@ -46,12 +47,11 @@ function App() {
         }
       });
   }
-  
 
   return (
-    <motion.div className={styles.app} background={imagen} >
+    <motion.div className={styles.app} background={imagen}>
       <SearchBar loadInfo={loadInfo} />
-      <Cards dataCiudad={city} handleRemoveCity={handleRemoveCity}/>
+      <Cards dataCiudad={city} handleRemoveCity={handleRemoveCity} />
     </motion.div>
   );
 }

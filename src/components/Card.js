@@ -2,20 +2,38 @@ import React from "react";
 import styles from "./Card.module.css";
 import { motion } from "framer-motion";
 
-const Card = ({ dataCiudad, handleRemoveCity }) => {
+const Card = ({ dataCiudad, handleRemoveCity, }) => {
+
+  const variants = {
+    hidden: {
+      x: "-100vw",
+      opacity: 0
+    },
+    visible: {
+      x: "0",
+      opacity: 1,
+      transition: {
+        type: "spring",
+        duration: 1,
+      }
+    },
+    
+  }
+
   return (
-    <motion.div className={styles.card}
-    initial={{x: "-100vw"}}
-    animate={{
-      x: 0
-    }}
-    transition={{ duration: .8, type: "spring"}}>
+
+      <motion.div exit={{ y: -1000}}
+      className={styles.card}
+      initial="hidden"
+      animate="visible"
+      variants={variants}
+      
+    >
       <motion.button
         onClick={() => handleRemoveCity(dataCiudad.id)}
         key={dataCiudad.id}
         className={styles.btn}
-        whileHover={{ scale: 1.2}}
-       
+        whileHover={{ scale: 1.2 }}
       >
         X
       </motion.button>
@@ -34,12 +52,10 @@ const Card = ({ dataCiudad, handleRemoveCity }) => {
               : null
           }
           className={styles.img}
-          drag="x"
-          dragConstraints={{ left: -1, right: 1 }}
         />
       </div>
       <div className={styles.temp}>
-        <h2>{dataCiudad.temp}</h2>
+        <h2>{dataCiudad.temp}°K</h2>
       </div>
     </motion.div>
   );
