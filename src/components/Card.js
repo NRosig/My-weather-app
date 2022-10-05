@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Card.module.css";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
-const Card = ({ dataCiudad, handleRemoveCity, }) => {
+const Card = ({ dataCiudad, handleRemoveCity, isVisible }) => {
 
   const variants = {
     hidden: {
@@ -14,19 +14,30 @@ const Card = ({ dataCiudad, handleRemoveCity, }) => {
       opacity: 1,
       transition: {
         type: "spring",
-        duration: 1,
+        duration: 1.5,
       }
     },
+    exit: {
+      y: 460,
+      opacity: 0,
+        transition: {
+          duration: .7,
+          
+        },
+      
+    }
     
   }
 
   return (
-
-      <motion.div exit={{ y: -1000}}
+      <motion.div 
+      exit="exit"
+      key={dataCiudad.id}
       className={styles.card}
       initial="hidden"
       animate="visible"
       variants={variants}
+      
       
     >
       <motion.button
@@ -58,6 +69,7 @@ const Card = ({ dataCiudad, handleRemoveCity, }) => {
         <h2>{dataCiudad.temp}°K</h2>
       </div>
     </motion.div>
+
   );
 };
 
