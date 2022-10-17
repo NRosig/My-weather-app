@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import styles from "../src/App.module.css";
-import img from "../src/imagenes/weather.jpg";
 import { motion } from "framer-motion";
 import Cards from "./components/Cards";
+import paisaje from "./imagenes/paisaje.jpg";
 
 function App() {
   const [city, setCity] = useState([]);
+  const [backgroundImg, setBackgroundImg] = useState(paisaje);
 
-  const imagen = img;
+  const cityArr = [...city];
+
+  useEffect(() => {
+    if (city.length === 4) {
+      const newArr = [...city];
+
+      setCity(newArr.splice(0, newArr.length - 1));
+    }
+  }, [city]);
 
   const handleAddCity = (ciudad) => {
     setCity((prevCity) => {
@@ -24,6 +33,12 @@ function App() {
     });
   };
 
+  const changeTemp = (k) => {
+    let temp = k - 273.15 ;
+    let celcius = Math.round(temp);
+    return celcius;
+  };
+
   async function loadInfo(city) {
     fetch(
       `${process.env.REACT_APP_URL}${city}&appid=${process.env.REACT_APP_KEY}`
@@ -35,7 +50,7 @@ function App() {
           const ciudad = {
             min: Math.round(data.main.temp_min),
             max: Math.round(data.main.temp_max),
-            temp: data.main.temp,
+            temp: changeTemp(data.main.temp),
             desc: data.weather[0].main,
             img: data.weather[0].icon,
             id: data.id,
@@ -49,8 +64,12 @@ function App() {
   }
 
   return (
-    <motion.div className={styles.app} background={imagen}>
-      <SearchBar loadInfo={loadInfo} />
+    <motion.div
+      className={styles.app}
+      style={{ backgroundImage: `url(${backgroundImg})` }}
+    >
+      <SearchBar loadInfo={loadInfo} cityArr={cityArr} />
+
       <Cards dataCiudad={city} handleRemoveCity={handleRemoveCity} />
     </motion.div>
   );

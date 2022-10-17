@@ -1,7 +1,7 @@
 
 
 .app {
-    background-image: url("./imagenes/paisaje.jpg");
+    animation: backgroundAnimation 20s linear infinite;
     background-size: cover;
     background-position: top;
     margin: 0 auto;
@@ -13,6 +13,10 @@
     align-content: center;
     align-items: center;
     border: 50px;
+    z-index: 10;
    
 }
+
+    
+
     
