@@ -1,4 +1,5 @@
 .card {
+
     height: 400px auto;
     white-space: nowrap;
     width: 330px;
@@ -14,6 +15,26 @@
     color: rgb(34, 34, 34);
     box-shadow: 1px 1px 40px 8px rgba(0,0,0,0.45);
     color: rgb(227, 224, 224);
+    z-index: 10;
+}
+
+.cardDos {
+    
+    justify-content: flex-start;
+    text-align:center;
+    height: 400px auto;
+    white-space: nowrap;
+    width: 300px; 
+    padding: 10px ;
+    margin-top: 23px;
+    font-family: Poppis, sans-serif;
+    text-shadow: 2px 3px rgba(0, 0, 0, 0.25);
+    color: #FFF;
+    z-index: 1;
+}
+
+.title{
+    display:inline-block;
 }
 
 .img{
@@ -57,17 +78,37 @@
     margin-top: 10px;
 }
 
+.dtBtn{
+    font-size: 30px;
+    height: 31px;
+    width: 32px;
+    position: relative;
+    right:122px;
+    border-radius: 18px 1px 8px 1px;
+    border: 1px solid white;
+    background: none;
+    color: white;
+}
+
+.dtBtn:hover{
+    cursor: pointer;
+    background: #c3c2c2;
+}
+
 .btn{
-    height: 30px;
-    width: 24px;
-    border-radius:1px 15px 1px 13px;
+    top: -9px;
+    margin: 0px;
+    font-size: 18px;
+    height: 32px;
+    width: 28px;
+    border-radius:1px 15px 1px 12px;
     color: white;
     border: 1.5px solid white;
     background: none;
-    font-weight: bolder;
+    font-weight: 600;
     justify-content: flex-end;
     position: relative;
-    left:142px;
+    left:123px;
 }
 
 .btn:hover{
@@ -78,4 +119,11 @@
 .cards{
     display: inline-flex;
     gap: 50px;
+}
+
+.details{
+    justify-content: center;
+    background-color: white;
+    height: 100px auto;
+    
 }

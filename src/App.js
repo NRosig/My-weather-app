@@ -48,13 +48,16 @@ function App() {
         if (data.main !== undefined) {
           console.log(data);
           const ciudad = {
-            min: Math.round(data.main.temp_min),
-            max: Math.round(data.main.temp_max),
+            min: changeTemp(data.main.temp_min),
+            max: changeTemp(data.main.temp_max),
             temp: changeTemp(data.main.temp),
+            st: changeTemp(data.main.feels_like),
             desc: data.weather[0].main,
             img: data.weather[0].icon,
             id: data.id,
             name: data.name,
+            hum: data.main.humidity,
+            wind: data.wind.speed
           };
           handleAddCity(ciudad);
         } else {

@@ -3,6 +3,7 @@ import Card from "./Card";
 import styles from "../components/Card.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 
+
 const Cards = ({ dataCiudad, handleRemoveCity, showCard }) => {
   return (
     <motion.div className={styles.cards}>
@@ -13,7 +14,9 @@ const Cards = ({ dataCiudad, handleRemoveCity, showCard }) => {
               dataCiudad={ciudad}
               key={ciudad.id}
               handleRemoveCity={handleRemoveCity}
-            />
+            >
+              <div className={styles.details}></div>
+            </Card>
           );
         })}
       </AnimatePresence>
